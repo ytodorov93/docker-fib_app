@@ -1,0 +1,24 @@
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t ytodorov/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true ytodorov/react-test npm test
+
+after_success:
+  - docker build -t ytodorov/client-img ./client
+  - docker build -t ytodorov/nginx-img ./nginx
+  - docker build -t ytodorov/server-img ./server
+  - docker build -t ytodorov/worker-img ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push ytodorov/client-img
+  - docker push ytodorov/nginx-img
+  - docker push ytodorov/server-img
+  - docker push ytodorov/worker-img
+  
