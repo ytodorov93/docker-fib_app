@@ -12,13 +12,13 @@ script:
   - docker run -e CI=true ytodorov/react-test npm test
 
 after_success:
-  - docker build -t ytodorov/client-img ./client
-  - docker build -t ytodorov/nginx-img ./nginx
-  - docker build -t ytodorov/server-img ./server
-  - docker build -t ytodorov/worker-img ./worker
+  - docker build -t ytodorov93/client-img ./client
+  - docker build -t ytodorov93/nginx-img ./nginx
+  - docker build -t ytodorov93/server-img ./server
+  - docker build -t ytodorov93/worker-img ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push ytodorov/client-img
-  - docker push ytodorov/nginx-img
-  - docker push ytodorov/server-img
-  - docker push ytodorov/worker-img
+  - docker push ytodorov93/client-img
+  - docker push ytodorov93/nginx-img
+  - docker push ytodorov93/server-img
+  - docker push ytodorov93/worker-img
   
