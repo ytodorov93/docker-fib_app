@@ -16,7 +16,7 @@ after_success:
   - docker build -t ytodorov/nginx-img ./nginx
   - docker build -t ytodorov/server-img ./server
   - docker build -t ytodorov/worker-img ./worker
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push ytodorov/client-img
   - docker push ytodorov/nginx-img
   - docker push ytodorov/server-img
