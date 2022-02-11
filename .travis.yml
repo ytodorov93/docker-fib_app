@@ -22,3 +22,14 @@ after_success:
   - docker push ytodorov93/server-img
   - docker push ytodorov93/worker-img
   
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'fib-app'
+  env: 'Fibapp-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-365181020201'
+  bucket_path: 'fib-app-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
